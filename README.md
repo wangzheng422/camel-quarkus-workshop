@@ -73,6 +73,10 @@ curl 7.68.0 (x86_64-pc-linux-gnu) libcurl/7.68.0 OpenSSL/1.1.1f zlib/1.2.11 brot
 Docker version 1.13.1, build 7f2769b/1.13.1
 ```
 
+```bash
+dnf install -y java-11-openjdk-devel
+```
+
 Describing all the ways to have those prerequisites installed is beyond the scope of this workshop, still some useful links could be found below:
  * [https://maven.apache.org/install.html](https://maven.apache.org/install.html)
  * [https://sdkman.io/usage](https://sdkman.io/usage)
@@ -514,7 +518,7 @@ Please read the documentation paragraph describing [How to tune a Camel componen
 
 Please amend the route in `src/main/java/org/acme/WriteYourIntegrationHereRoutes.java` in order to produce messages to this broker.
 Don't know where to start, questions below might help:
- + What Camel Quarkus extension do we need to send messages to an Apache ActiveMQ server?
+ + What [Camel Quarkus extension](https://camel.apache.org/camel-quarkus/2.12.x/reference/extensions/activemq.html#_native_mode_support_for_javax_jms_objectmessage) do we need to send messages to an Apache ActiveMQ server?
  + What is the URI format?
  + Could we set the ActiveMQ broker URL in the Camel endpoint URI?
  + Do we have a component option that would allow to override the default broker URL ? What is the default TCP port used?

@@ -17,11 +17,17 @@ public class MyRoutes extends RouteBuilder {
                 .unmarshal().json(Coffee.class)
                 .bean("myBean", "generateOrder")
                 .marshal().json()
-                /* TODO push the result to kafka*/;
+                /* TODO push the result to kafka*/
+                .to("kafka:orders");
 
         // This is the Kafka Consumer Route to implement
         from("kafka:orders")
-                .log("received from kafka : ${body}");
+                .unmarshal().json(CoffeeOrder.class)
+                .to("jpa:" + CoffeeOrder.class)
+                .bean("myBean", "generateNotification")
+                .log("received from kafka : ${body}")
+                .to("slack://general");
+                // .log("received from kafka : ${body}");
 
         /**
          * REST api to fetch Coffee Orders
