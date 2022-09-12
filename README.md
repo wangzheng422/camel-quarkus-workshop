@@ -75,6 +75,18 @@ Docker version 1.13.1, build 7f2769b/1.13.1
 
 ```bash
 dnf install -y java-11-openjdk-devel
+
+cd /etc/yum.repos.d
+wget https://download.docker.com/linux/fedora/docker-ce.repo
+
+sed -i 's/$releasever/28/g' docker-ce.repo
+sed -i 's/$basearch/x86_64/g' docker-ce.repo
+
+# dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+dnf install -y --nobest docker-ce
+
+systemctl enable --now docker
 ```
 
 Describing all the ways to have those prerequisites installed is beyond the scope of this workshop, still some useful links could be found below:
